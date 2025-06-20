@@ -24,7 +24,7 @@ if st.button("Submit button"):
                     json.dump(names,f)   
 
             st.success("✅ Your name is registered!")
-            st.markdown("[💌 You are invited! Please click here >](https://seemandha.streamlit.app/)")
+            st.markdown("[💌 You are invited! Please click here >](https://avis-1.onrender.com/)")
             
         else:
             st.warning("⚠️ This name has already been registered.")
