@@ -45,10 +45,10 @@ st.markdown("""
 
 
 
-img = Image.open("seemandham.jpg")
+img = Image.open("New folder/seemandham.jpg")
 img_re=img.resize((400,600))
 
-img1 = Image.open("foots.jpg")
+img1 = Image.open("New folder/foots.jpg")
 img_re1=img1.resize((400,100))
 
 col1, col2, col3 = st.columns([1, 2, 1]) 
