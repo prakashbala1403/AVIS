@@ -58,9 +58,9 @@ with col2:
 <h2 style="color:green;font-family: 'Courgette', cursive;text-align:center;">Join Us For A Baby Shower</h1>""", unsafe_allow_html=True)
           st.markdown("""<h1 style="color:purple;font-size:20px;font-family:'Courgette', cursive;text-align:center;">In Honor of MOM-TO-BE</h1>""", unsafe_allow_html=True)  
           st.markdown("""<h1 style="color:violet;font-size:30px;font-family:'Courgette', cursive;text-align:center;">HEMA PRAKASH</h1>""", unsafe_allow_html=True)
-          st.image(img_re1, caption="boy | girl", use_column_width=True)
-          st.image(img_re, caption="Seemandham Event",use_column_width=True)
-          st.image(img_re1, caption="boy | girl", use_column_width=True)
+          st.image(img_re1, caption="boy | girl")
+          st.image(img_re, caption="Seemandham Event")
+          st.image(img_re1, caption="boy | girl")
           st.markdown("""<h2 style="color:brown;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Friday, Aug 29, 2025, 9:00 AM</h2>""", unsafe_allow_html=True)
           st.markdown("""<h2 style="color:brown;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Venue : RKS MAHAL, Avadi</h2>""", unsafe_allow_html=True)
 
