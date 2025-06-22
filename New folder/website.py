@@ -24,12 +24,11 @@ if st.button("Submit button"):
                     json.dump(names,f)   
 
             st.success("✅ Your name is registered!")
-            st.markdown("[💌 You are invited! Please click here >](https://chatgpt.com)")
+            st.markdown("[💌 You are invited! Please click here >](https://avis-1.onrender.com/)")
             
         else:
             st.warning("⚠️ This name has already been registered.")
-else:
-            st.write("please enter you name before submitting")
+
 
 
             
