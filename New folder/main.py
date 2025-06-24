@@ -2,13 +2,29 @@ import pandas as pd
 import os
 import streamlit as st
 import json
-from PIL import Image 
+from PIL import Image
+import mysql.connector 
 
 
 
+query=st.query_params
+user_name=query.get("name",[""])[0]            #-----> First need to write query.get()[0]
 
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="123456789",
+    database="babyshower_db"
+)
+cur = db.cursor()
 
-
+# --- Create votes table if not exists ---
+cur.execute("""
+CREATE TABLE IF NOT EXISTS votes (
+    name VARCHAR(100) PRIMARY KEY,
+    vote VARCHAR(10)
+)
+""")
 
 
 
@@ -16,25 +32,13 @@ col1,col2,col3=st.columns(3)
 
 
 with col2:
-    st.markdown("""
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-    <style>
-    .invitation {
-        font-family: 'Courgette', cursive;
-        color: #DA70D6;
-        font-size: 28px;
-        text-align: center;
-    }
-    </style>
-    <div class='invitation'>
-        You’re Invited!<br>
-        
-    </div>
-""", unsafe_allow_html=True)
+    st.markdown(f"""<h1 style="font-family: 'Courgette', cursive;color: #ff69b4;font-size: 28px;
+        text-align: center;">Hey {user_name} You’re Invited!</h1>""", unsafe_allow_html=True)
+    
 st.markdown("""
-<div style="background-color:#f3e5f5;padding:20px;border-radius:12px;text-align:center;">
-    <h1 style="color:#6a1b9a;font-family: 'Courgette', cursive;font-size:18px">🌼 Baby Shower 🌼</h1>
-    <p style="font-size:18px; color:#4a148c;font-family: 'Brush Script MT',cursive;">A joyful celebration of tradition, love, and new beginnings</p>
+<div style="background-color:#add8e6;padding:20px;border-radius:12px;text-align:center;">
+    <h1 style="color:blue;font-family: 'Courgette', cursive;font-size:18px">🌼 Baby Shower 🌼</h1>
+    <p style="font-size:18px; color:blue;font-family: 'Brush Script MT',cursive;">A joyful celebration of tradition, love, and new beginnings</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -58,58 +62,33 @@ col1, col2, col3 = st.columns([1, 2, 1])
 
 with col2:
           st.markdown("""
-<h2 style="color:green;font-family: 'Courgette', cursive;text-align:center;">Join Us For A Baby Shower</h1>""", unsafe_allow_html=True)
-          st.markdown("""<h1 style="color:purple;font-size:20px;font-family:'Courgette', cursive;text-align:center;">In Honor of MOM-TO-BE</h1>""", unsafe_allow_html=True)  
-          st.markdown("""<h1 style="color:violet;font-size:30px;font-family:'Courgette', cursive;text-align:center;">HEMA PRAKASH</h1>""", unsafe_allow_html=True)
-          st.image(img_re1, caption="boy | girl")
-          st.image(img_re, caption="Seemandham Event")
-          st.image(img_re2, caption="boy | girl")
-          st.markdown("""<h2 style="color:brown;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Friday, Aug 29, 2025, 9:00 AM</h2>""", unsafe_allow_html=True)
-          st.markdown("""<h2 style="color:brown;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Venue : RKS MAHAL, Avadi</h2>""", unsafe_allow_html=True)
+<h2 style="color:#ff69b4;font-family: 'Courgette', cursive;text-align:center;">Join Us For A Baby Shower</h1>""", unsafe_allow_html=True)
+          st.markdown("""<h1 style="color:blue;font-size:20px;font-family:'Courgette', cursive;text-align:center;">In Honor of MOM-TO-BE</h1>""", unsafe_allow_html=True)  
+          st.markdown("""<h1 style="color:#ff69b4;font-size:30px;font-family:'Courgette', cursive;text-align:center;">HEMA PRAKASH</h1>""", unsafe_allow_html=True)
+          st.image(img_re1)
+          st.image(img_re)
+          st.image(img_re2)
+          st.markdown("""<h2 style="color:blue;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Friday, Aug 29, 2025, 9:00 AM</h2>""", unsafe_allow_html=True)
+          st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Venue : RKS MAHAL, Avadi</h2>""", unsafe_allow_html=True)
 
 
+cur.execute("SELECT vote FROM votes WHERE name = %s", (user_name,))
+existing_vote = cur.fetchone()
 
-
-
-
-name_file="final.json"
-
-if os.path.exists(name_file):
-       with open(name_file,"r") as f:
-              votes=json.load(f)
+if existing_vote:
+    st.info(f"✅ You already voted for: **{existing_vote[0]}**")
 else:
-       votes={"Boy":[],
-              "Girl":[]
-              }
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("👦 Vote for Boy"):
+            cur.execute("INSERT INTO votes (name, vote) VALUES (%s, %s)", (user_name, "Boy"))
+            db.commit()
+            st.success("✅ Your vote for Boy has been saved!")
 
-user_name=st.text_input("Enter_Name")
-col1, col2 = st.columns(2)
-with col1:
- if st.button("👦 Vote for Boy"):
-       if user_name not in votes["Boy"] and user_name not in votes["Girl"]:
-              votes["Boy"].append(user_name)
-
-              with open(name_file, "w") as f:
-                    json.dump(votes, f)
-                    st.success(f"✅ Thanks {user_name}, your vote for Boy has been saved!")
-                    st.markdown("""<h2 style="color:brown;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">We value your participation — your vote means a lot! 🎉</h2>""", unsafe_allow_html=True)
-
-       else:
-                st.warning("⚠️ You have already voted.")
- else:
-            st.warning("⚠️ Please enter your name before voting.")
-
-
-with col2:
- if st.button("👧 Vote for Girl"):
-       if user_name not in votes["Girl"] and user_name not in votes["Boy"]:
-              votes["Girl"].append(user_name)
-
-              with open(name_file, "w") as f:
-                    json.dump(votes, f)
-                    st.success(f"✅ Thanks {user_name}, your vote for Girl has been saved!")
-                    st.markdown("""<h2 style="color:brown;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">We value your participation — your vote means a lot! 🎉</h2>""", unsafe_allow_html=True)
-       else:
-                st.warning("⚠️ You have already voted.")
- else:
-            st.warning("⚠️ Please enter your name before voting.")
+    with col2:
+        if st.button("👧 Vote for Girl"):
+            cur.execute("INSERT INTO votes (name, vote) VALUES (%s, %s)", (user_name, "Girl"))
+            db.commit()
+            st.success("✅ Your vote for Girl has been saved!")
+cur.close()
+db.close()

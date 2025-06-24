@@ -2,32 +2,55 @@ import streamlit as st
 from PIL import Image
 import json
 import os
-
-name_file = "name.json"
-
-
-if os.path.exists(name_file):
-      with open(name_file,"r") as f:
-            names=json.load(f)
-else:
-      names=[]
+import sqlite3                             # sqlite (not use industry mostly prefer mysql)
+import mysql.connector
 
 
 
+init_db = mysql.connector.connect(
+    host="localhost",       # or your MySQL host
+    user="root",            # your MySQL username
+    password="123456789",  # your MySQL password
+   # database="babyshower_db"   # your MySQL database name
+)
+cursor = init_db.cursor()
 
-user_name=st.text_input("Please enter your name") #------------ First
+cursor.execute("CREATE DATABASE IF NOT EXISTS babyshower_db")
+init_db.close()
 
-if st.button("Submit button"):
-        if user_name not in names:
-            names.append(user_name)
-            with open(name_file,"w") as f:
-                    json.dump(names,f)   
 
-            st.success("✅ Your name is registered!")
-            st.markdown("[💌 You are invited! Please click here >](https://avis-1.onrender.com/)")
-            
-        else:
-            st.warning("⚠️ This name has already been registered.")
+
+db = mysql.connector.connect(
+    host="localhost",       # or your MySQL host
+    user="root",            # your MySQL username
+    password="123456789",  # your MySQL password
+    database="babyshower_db"   # your MySQL database name
+)
+cur=db.cursor()
+
+cur.execute("""CREATE TABLE IF NOT EXISTS guest (name VARCHAR(100) PRIMARY KEY)""")
+
+user_name=st.text_input("Enter Your Name ")
+st.button("Submit")
+
+
+if user_name :
+    cur.execute("SELECT name from guest WHERE name =%s", (user_name,))
+    result=cur.fetchone()
+
+    if result:
+      st.warning("Your name is already registered")
+    else:
+      cur.execute("INSERT INTO guest (name) VALUES (%s)",(user_name,))
+      db.commit()
+      st.success("Your name is Registered Successfully")
+      invite_link=f"https://avis-1.onrender.com/?name={user_name}"
+      st.markdown(f"""[Your Invitation Link click here>]({invite_link})""")
+   
+
+cur.close()
+db.close()
+
 
 
 
