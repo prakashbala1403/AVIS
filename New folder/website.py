@@ -5,18 +5,19 @@ import os
 import sqlite3                             # sqlite (not use industry mostly prefer mysql)
 import mysql.connector
 
-DB_HOST = shinkansen.proxy.rlwy.net
+DB_HOST = "shinkansen.proxy.rlwy.net"
 DB_PORT = 36048
-DB_USER = root
-DB_PASS = qNctttAsIiXEpvbcaKhcHEENkEJGzNqX
+DB_USER = "root"
+DB_PASS = "qNctttAsIiXEpvbcaKhcHEENkEJGzNqX"
+DB_NAME = "babyshower_db"
 
 
 init_db = mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    port=int(os.getenv("DB_PORT", 3306)),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASS"),
-   
+    host=DB_HOST,
+    port=DB_PORT,
+    user=DB_USER,
+    password=DB_PASS,
+    
 )
 cursor = init_db.cursor()
 
@@ -24,13 +25,15 @@ cursor.execute("CREATE DATABASE IF NOT EXISTS babyshower_db")
 init_db.close()
 
 
+
 db = mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    port=int(os.getenv("DB_PORT", 3306)),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASS"),
-    database=os.getenv("babyshower_db")
+    host=DB_HOST,
+    port=DB_PORT,
+    user=DB_USER,
+    password=DB_PASS,
+    database=DB_NAME
 )
+
 cur=db.cursor()
 
 cur.execute("""CREATE TABLE IF NOT EXISTS guest (name VARCHAR(100) PRIMARY KEY)""")
