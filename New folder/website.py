@@ -5,14 +5,18 @@ import os
 import sqlite3                             # sqlite (not use industry mostly prefer mysql)
 import mysql.connector
 
+DB_HOST = shinkansen.proxy.rlwy.net
+DB_PORT = 36048
+DB_USER = root
+DB_PASS = qNctttAsIiXEpvbcaKhcHEENkEJGzNqX
 
 
 init_db = mysql.connector.connect(
-    host="shinkansen.proxy.rlwy.net",         # Railway host
-    port=36048,                                # Railway port
-    user="root",                               # Railway user
-    password="qNctttAsIiXEpvbcaKhcHEENkEJGzNqX",  # Railway password
-    
+    host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT", 3306)),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASS"),
+   
 )
 cursor = init_db.cursor()
 
@@ -20,13 +24,12 @@ cursor.execute("CREATE DATABASE IF NOT EXISTS babyshower_db")
 init_db.close()
 
 
-
 db = mysql.connector.connect(
-    host="shinkansen.proxy.rlwy.net",         # Railway host
-    port=36048,                                # Railway port
-    user="root",                               # Railway user
-    password="qNctttAsIiXEpvbcaKhcHEENkEJGzNqX",  # Railway password
-    database="railway"                         # Railway database name
+    host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT", 3306)),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASS"),
+    database=os.getenv("babyshower_db")
 )
 cur=db.cursor()
 
