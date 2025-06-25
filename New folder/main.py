@@ -8,7 +8,7 @@ DB_HOST = shinkansen.proxy.rlwy.net
 DB_PORT = 36048
 DB_USER = root
 DB_PASS = qNctttAsIiXEpvbcaKhcHEENkEJGzNqX
-DB_NAME = railway
+
 
 
 
@@ -20,7 +20,7 @@ db = mysql.connector.connect(
     port=int(os.getenv("DB_PORT", 3306)),
     user=os.getenv("DB_USER"),
     password=os.getenv("DB_PASS"),
-    database=os.getenv("DB_NAME")
+    database=os.getenv("babyshower_db")
 )
 cur = db.cursor()
 
