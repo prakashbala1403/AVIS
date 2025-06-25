@@ -59,13 +59,13 @@ st.markdown("""
 
 
 
-img = Image.open(r"New folder\seemandham.jpg")
+img = Image.open(r"New folder/seemandham.jpg")
 img_re=img.resize((400,600))
 
-img1 = Image.open(r"New folder\foots.jpg")
+img1 = Image.open(r"New folder/foots.jpg")
 img_re1=img1.resize((400,100))
 
-img2 = Image.open(r"New folder\baby.jpeg")
+img2 = Image.open(r"New folder/baby.jpeg")
 img_re2=img2.resize((400,300))
 
 col1, col2, col3 = st.columns([1, 2, 1]) 
