@@ -10,7 +10,7 @@ DB_HOST = "shinkansen.proxy.rlwy.net"
 DB_PORT = 36048
 DB_USER = "root"
 DB_PASS = "qNctttAsIiXEpvbcaKhcHEENkEJGzNqX"
-DB_NAME = "babyshower_db"
+DB_NAME = "railway"
 
 
 
