@@ -9,7 +9,7 @@ DB_HOST = "shinkansen.proxy.rlwy.net"
 DB_PORT = 36048
 DB_USER = "root"
 DB_PASS = "qNctttAsIiXEpvbcaKhcHEENkEJGzNqX"
-DB_NAME = "babyshower_db"
+DB_NAME = "railway"
 
 
 init_db = mysql.connector.connect(
@@ -21,7 +21,7 @@ init_db = mysql.connector.connect(
 )
 cursor = init_db.cursor()
 
-cursor.execute("CREATE DATABASE IF NOT EXISTS babyshower_db")
+cursor.execute("CREATE DATABASE IF NOT EXISTS railway")
 init_db.close()
 
 
