@@ -4,10 +4,14 @@ import streamlit as st
 import json
 from PIL import Image
 import mysql.connector 
-DB_HOST = shinkansen.proxy.rlwy.net
+
+
+DB_HOST = "shinkansen.proxy.rlwy.net"
 DB_PORT = 36048
-DB_USER = root
-DB_PASS = qNctttAsIiXEpvbcaKhcHEENkEJGzNqX
+DB_USER = "root"
+DB_PASS = "qNctttAsIiXEpvbcaKhcHEENkEJGzNqX"
+DB_NAME = "babyshower_db"
+
 
 
 
@@ -16,11 +20,11 @@ query=st.query_params
 user_name=query.get("name",[""])[0]            #-----> First need to write query.get()[0]
 
 db = mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    port=int(os.getenv("DB_PORT", 3306)),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASS"),
-    database=os.getenv("babyshower_db")
+    host=DB_HOST,
+    port=DB_PORT,
+    user=DB_USER,
+    password=DB_PASS,
+    database=DB_NAME
 )
 cur = db.cursor()
 
