@@ -11,10 +11,11 @@ query=st.query_params
 user_name=query.get("name",[""])[0]            #-----> First need to write query.get()[0]
 
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="123456789",
-    database="babyshower_db"
+    host="shinkansen.proxy.rlwy.net",         # Railway host
+    port=36048,                                # Railway port
+    user="root",                               # Railway user
+    password="qNctttAsIiXEpvbcaKhcHEENkEJGzNqX",  # Railway password
+    database="railway"                         # Railway database name
 )
 cur = db.cursor()
 
