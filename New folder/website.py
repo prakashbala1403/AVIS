@@ -53,7 +53,7 @@ if user_name :
       db.commit()
       st.success("Your name is Registered Successfully")
       invite_link=f"https://hemsinvitation.onrender.com/?name={user_name}"
-      st.markdown(f"""[Your Invitation Link click here>]({invite_link})""")
+      st.markdown(f"[Your Invitation Link click here>]({invite_link})")
    
 
 cur.close()
