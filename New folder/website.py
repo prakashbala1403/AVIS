@@ -52,7 +52,7 @@ if user_name :
       cur.execute("INSERT INTO guest (name) VALUES (%s)",(user_name,))
       db.commit()
       st.success("Your name is Registered Successfully")
-      invite_link=f"https://avis-1.onrender.com/?name={user_name}"
+      invite_link=f"https://hemsinvitation.onrender.com/?name={user_name}"
       st.markdown(f"""[Your Invitation Link click here>]({invite_link})""")
    
 
