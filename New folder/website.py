@@ -8,10 +8,11 @@ import mysql.connector
 
 
 init_db = mysql.connector.connect(
-    host="localhost",       # or your MySQL host
-    user="root",            # your MySQL username
-    password="123456789",  # your MySQL password
-   # database="babyshower_db"   # your MySQL database name
+    host="shinkansen.proxy.rlwy.net",         # Railway host
+    port=36048,                                # Railway port
+    user="root",                               # Railway user
+    password="qNctttAsIiXEpvbcaKhcHEENkEJGzNqX",  # Railway password
+    
 )
 cursor = init_db.cursor()
 
@@ -21,10 +22,11 @@ init_db.close()
 
 
 db = mysql.connector.connect(
-    host="localhost",       # or your MySQL host
-    user="root",            # your MySQL username
-    password="123456789",  # your MySQL password
-    database="babyshower_db"   # your MySQL database name
+    host="shinkansen.proxy.rlwy.net",         # Railway host
+    port=36048,                                # Railway port
+    user="root",                               # Railway user
+    password="qNctttAsIiXEpvbcaKhcHEENkEJGzNqX",  # Railway password
+    database="railway"                         # Railway database name
 )
 cur=db.cursor()
 
