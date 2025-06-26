@@ -17,7 +17,7 @@ DB_NAME = "railway"
 
 
 query=st.query_params
-user_name=query.get("name",[""])[0]            #-----> First need to write query.get()[0]
+user_name=query.get("name","")           #-----> First need to write query.get()[0]
 
 db = mysql.connector.connect(
     host=DB_HOST,
@@ -47,8 +47,8 @@ with col2:
     
 st.markdown("""
 <div style="background-color:#add8e6;padding:20px;border-radius:12px;text-align:center;">
-    <h1 style="color:blue;font-family: 'Courgette', cursive;font-size:18px">🌼 Baby Shower 🌼</h1>
-    <p style="font-size:18px; color:blue;font-family: 'Brush Script MT',cursive;">A joyful celebration of tradition, love, and new beginnings</p>
+    <h1 style="color:blue;font-family: 'Courgette', cursive;font-size:34px">🌼 Baby Shower 🌼</h1>
+    <p style="font-size:28px; color:blue;font-family: 'Brush Script MT',cursive;">A joyful celebration of tradition, love, and new beginnings</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -73,11 +73,11 @@ col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
           st.markdown("""
 <h2 style="color:#ff69b4;font-family: 'Courgette', cursive;text-align:center;">Join Us For A Baby Shower</h1>""", unsafe_allow_html=True)
-          st.markdown("""<h1 style="color:blue;font-size:20px;font-family:'Courgette', cursive;text-align:center;">In Honor of MOM-TO-BE</h1>""", unsafe_allow_html=True)  
-          st.markdown("""<h1 style="color:#ff69b4;font-size:30px;font-family:'Courgette', cursive;text-align:center;">HEMA PRAKASH</h1>""", unsafe_allow_html=True)
+          st.markdown("""<h1 style="color:blue;font-size:20px;font-family: 'Courgette', cursive;text-align:center;">In Honor of MOM-TO-BE</h1>""", unsafe_allow_html=True)  
+          st.markdown("""<h1 style="color:#ff69b4;font-size:30px;font-family: 'Courgette', cursive;text-align:center;">HEMA PRAKASH</h1>""", unsafe_allow_html=True)
           st.image(img_re1)
           st.image(img_re)
-          st.image(img_re2)
+          
           st.markdown("""<h2 style="color:blue;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Friday, Aug 29, 2025, 9:00 AM</h2>""", unsafe_allow_html=True)
           st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Venue : RKS MAHAL, Avadi</h2>""", unsafe_allow_html=True)
 
@@ -93,12 +93,15 @@ else:
         if st.button("👦 Vote for Boy"):
             cur.execute("INSERT INTO votes (name, vote) VALUES (%s, %s)", (user_name, "Boy"))
             db.commit()
+            st.image(img_re2)
             st.success("✅ Your vote for Boy has been saved!")
+            st.markdown("""<h2 style="color:blue;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Voting results soon</h2>""", unsafe_allow_html=True)
 
     with col2:
         if st.button("👧 Vote for Girl"):
             cur.execute("INSERT INTO votes (name, vote) VALUES (%s, %s)", (user_name, "Girl"))
             db.commit()
             st.success("✅ Your vote for Girl has been saved!")
+            st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Voting results soon</h2>""", unsafe_allow_html=True)
 cur.close()
 db.close()
