@@ -68,19 +68,29 @@ img_re1=img1.resize((400,100))
 img2 = Image.open(r"New folder/baby.jpeg")
 img_re2=img2.resize((400,300))
 
+img3 = Image.open(r"New folder/Boy.jpeg")
+img_re3=img3.resize((400,300))
+
+img4 = Image.open(r"New folder/Girl.jpeg")
+img_re4=img4.resize((400,300))
+
+
+
 col1, col2, col3 = st.columns([1, 2, 1]) 
 
 with col2:
           st.markdown("""
 <h2 style="color:#ff69b4;font-family: 'Courgette', cursive;text-align:center;">Join Us For A Baby Shower</h1>""", unsafe_allow_html=True)
-          st.markdown("""<h1 style="color:blue;font-size:20px;font-family: 'Courgette', cursive;text-align:center;">In Honor of MOM-TO-BE</h1>""", unsafe_allow_html=True)  
-          st.markdown("""<h1 style="color:#ff69b4;font-size:30px;font-family: 'Courgette', cursive;text-align:center;">HEMA PRAKASH</h1>""", unsafe_allow_html=True)
+          st.markdown("""<h1 style="color:blue;font-size:20px;font-family: 'Courgette', cursive;text-align:center;">In Honor of mom-to-be</h1>""", unsafe_allow_html=True)  
+          st.markdown("""<h1 style="color:#ff69b4;font-size:30px;font-family: "Lobster", cursive;text-align:center;">🎀  Hema Prakash  🎀</h1>""", unsafe_allow_html=True)
           st.image(img_re1)
           st.image(img_re)
           
           st.markdown("""<h2 style="color:blue;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Friday, Aug 29, 2025, 9:00 AM</h2>""", unsafe_allow_html=True)
-          st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Venue : RKS MAHAL, Avadi</h2>""", unsafe_allow_html=True)
+          st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Venue : RKS mahal, Avadi</h2>""", unsafe_allow_html=True)
 
+
+st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">💙 Blue or Pink, what do you think? 💗</h2>""", unsafe_allow_html=True)
 
 cur.execute("SELECT vote FROM votes WHERE name = %s", (user_name,))
 existing_vote = cur.fetchone()
@@ -93,15 +103,16 @@ else:
         if st.button("👦 Vote for Boy"):
             cur.execute("INSERT INTO votes (name, vote) VALUES (%s, %s)", (user_name, "Boy"))
             db.commit()
-            st.image(img_re2)
+            st.image(img_re3)
             st.success("✅ Your vote for Boy has been saved!")
-            st.markdown("""<h2 style="color:blue;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Voting results soon</h2>""", unsafe_allow_html=True)
+            st.markdown("""<h2 style="color:blue;font-size:20px;text-align:center;font-family: 'Courgette', cursive;"> Voting has ended — results will be announced soon!</h2>""", unsafe_allow_html=True)
 
     with col2:
         if st.button("👧 Vote for Girl"):
             cur.execute("INSERT INTO votes (name, vote) VALUES (%s, %s)", (user_name, "Girl"))
             db.commit()
+            st.image(img_re4)
             st.success("✅ Your vote for Girl has been saved!")
-            st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Voting results soon</h2>""", unsafe_allow_html=True)
+            st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;"> Voting has ended — results will be announced soon!</h2>""", unsafe_allow_html=True)
 cur.close()
 db.close()
