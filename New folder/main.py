@@ -68,7 +68,7 @@ img_re1=img1.resize((400,100))
 img2 = Image.open(r"New folder/baby.jpeg")
 img_re2=img2.resize((400,300))
 
-img3 = Image.open(r"New folder/Boy.jpeg")
+img3 = Image.open(r"New folder/Boy.png")
 img_re3=img3.resize((400,300))
 
 img4 = Image.open(r"New folder/Girl.jpeg")
