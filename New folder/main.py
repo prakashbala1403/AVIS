@@ -84,7 +84,7 @@ with col2:
           st.markdown("""
 <h2 style="color:#ff69b4;font-family: 'Courgette', cursive;text-align:center;">Join Us For A Baby Shower</h1>""", unsafe_allow_html=True)
           st.markdown("""<h1 style="color:blue;font-size:20px;font-family: 'Courgette', cursive;text-align:center;">In Honor of mom-to-be</h1>""", unsafe_allow_html=True)  
-          st.markdown("""<h1 style="color:#ff69b4;font-size:30px;font-family: "Lobster", cursive;text-align:center;">🎀  Hema Prakash  🎀</h1>""", unsafe_allow_html=True)
+          st.markdown("""<h1 style="color:#ff69b4;font-size:30px;font-family: 'Lobster', cursive;text-align:center;">🎀  Hema Prakash  🎀</h1>""", unsafe_allow_html=True)
           st.image(img_re1)
           st.image(img_re)
           
@@ -92,7 +92,7 @@ with col2:
           st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">Venue : RKS mahal, Avadi</h2>""", unsafe_allow_html=True)
 
 
-st.markdown("""<h2 style="color:#ff69b4;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">💙 Blue or Pink, what do you think? 💗</h2>""", unsafe_allow_html=True)
+st.markdown(f"""<h2 style="color:violet;font-size:20px;text-align:center;font-family: 'Courgette', cursive;">💙 Blue or Pink, what do you think {user_name}? 💗</h2>""", unsafe_allow_html=True)
 
 cur.execute("SELECT vote FROM votes WHERE name = %s", (user_name,))
 existing_vote = cur.fetchone()
