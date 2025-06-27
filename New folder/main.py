@@ -6,6 +6,8 @@ from PIL import Image
 import mysql.connector 
 
 
+
+
 DB_HOST = "shinkansen.proxy.rlwy.net"
 DB_PORT = 36048
 DB_USER = "root"
