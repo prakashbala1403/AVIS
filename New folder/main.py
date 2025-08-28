@@ -8,10 +8,10 @@ import mysql.connector
 
 
 
-DB_HOST = "shinkansen.proxy.rlwy.net"
-DB_PORT = 36048
+DB_HOST = "mysql.railway.internal"
+DB_PORT = 3306
 DB_USER = "root"
-DB_PASS = "qNctttAsIiXEpvbcaKhcHEENkEJGzNqX"
+DB_PASS = "NSZvoNxXFEKuaCRwEIYAUKldRcoOLqYb"
 DB_NAME = "railway"
 
 
@@ -61,7 +61,7 @@ st.markdown("""
 
 
 
-img = Image.open(r"New folder/seemandham.jpg")
+img = Image.open(r"New folder/IMG_9012.jpeg")
 img_re=img.resize((400,600))
 
 img1 = Image.open(r"New folder/foots.jpg")
