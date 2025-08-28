@@ -8,8 +8,8 @@ import mysql.connector
 
 
 
-DB_HOST = "mysql.railway.internal"
-DB_PORT = 3306
+DB_HOST = "shuttle.proxy.rlwy.net"
+DB_PORT = 26970
 DB_USER = "root"
 DB_PASS = "NSZvoNxXFEKuaCRwEIYAUKldRcoOLqYb"
 DB_NAME = "railway"
