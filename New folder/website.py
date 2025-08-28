@@ -5,10 +5,10 @@ import os
 import sqlite3                             # sqlite (not use industry mostly prefer mysql)
 import mysql.connector
 
-DB_HOST = "shinkansen.proxy.rlwy.net"
-DB_PORT = 36048
+DB_HOST = "mysql.railway.internal"
+DB_PORT = 3306
 DB_USER = "root"
-DB_PASS = "qNctttAsIiXEpvbcaKhcHEENkEJGzNqX"
+DB_PASS = "NSZvoNxXFEKuaCRwEIYAUKldRcoOLqYb"
 DB_NAME = "railway"
 
 
